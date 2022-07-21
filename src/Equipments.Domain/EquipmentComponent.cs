@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Equipments.Domain
 {
-    public partial class Equipment
+    public partial class EquipmentComponent
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -12,9 +12,11 @@ namespace Equipments.Domain
         public DateTime ProductionDate { get; set; }
         public DateTime ReceiptDate { get; set; }
         public bool IsActive { get; set; }
-        public int EquipmentTypeId { get; set; }
+        public int EquipmentComponentTypeId { get; set; }
+        public int? EquipmentId { get; set; }
 
-        public virtual EquipmentType EquipmentType { get; set; }
-        public virtual ICollection<EquipmentComponent> EquipmentComponents { get; set; }
+        public virtual Equipment Equipment { get; set; }
+        public virtual EquipmentComponentType EquipmentComponentType { get; set; }
+        public virtual ICollection<PropertyOfEquipmentComponent> PropertyOfEquipmentComponents { get; set; }
     }
 }
