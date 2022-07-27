@@ -6,7 +6,7 @@ namespace Equipments.Application
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddMediatr(this IServiceCollection services)
+        public static IServiceCollection AddApplicationMediatr(this IServiceCollection services)
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
             return services;
