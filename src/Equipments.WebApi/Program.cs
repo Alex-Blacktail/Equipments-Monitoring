@@ -12,7 +12,7 @@ builder.Services.AddAutoMapper(c =>
     c.AddProfile(new AssemblyMappingProfile(typeof(IEquipmentsDbContext).Assembly));
 });
 
-builder.Services.AddMediatr();
+builder.Services.AddApplicationMediatr();
 builder.Services.AddEquipmentsDbContext(builder.Configuration);
 
 builder.Services.AddControllers();
