@@ -8,6 +8,11 @@ namespace Equipments.Application.ViewModels
     public class EquipmentDetailsViewModel : IMapWith<Equipment>
     {
         /// <summary>
+        /// Тип оргтехники
+        /// </summary>
+        public string EquipmentType { get; set; }
+
+        /// <summary>
         /// Наименование оргтехники
         /// </summary>
         public string Name { get; set; }
@@ -32,10 +37,12 @@ namespace Equipments.Application.ViewModels
         /// </summary>
         public DateTime ReceiptDate { get; set; }
 
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Equipment, EquipmentDetailsViewModel>()
                 .ForMember(vm => vm.Name, e => e.MapFrom(e => e.Name))
+                .ForMember(vm => vm.EquipmentType, e => e.MapFrom(e => e.EquipmentType.Name))
                 .ForMember(vm => vm.ModelNumber, e => e.MapFrom(e => e.ModelNumber))
                 .ForMember(vm => vm.InventoryNumber, e => e.MapFrom(e => e.InventoryNumber))
                 .ForMember(vm => vm.ProductionDate, e => e.MapFrom(e => e.ProductionDate))

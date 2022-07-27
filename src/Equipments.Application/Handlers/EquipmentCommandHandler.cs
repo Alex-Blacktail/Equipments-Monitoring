@@ -23,13 +23,22 @@ namespace Equipments.Application.Handlers
 
         public async Task<int> Handle(EquipmentCreateCommand request, CancellationToken cancellationToken)
         {
+            var equipmentType = await _context.EquipmentTypes
+                .FirstOrDefaultAsync(e => e.Id == request.EquipmentTypeId);
+
+            if(equipmentType == null)
+            {
+                throw new NotFoundExeption(nameof(EquipmentType), request.EquipmentTypeId);
+            }
+
             var equipment = new Equipment
             {
                 InventoryNumber = request.InventoryNumber,
                 ProductionDate = request.ProductionDate,
                 ReceiptDate = request.ReceiptDate,
                 ModelNumber = request.ModelNumber,
-                Name = request.Name
+                Name = request.Name,
+                EquipmentTypeId = request.EquipmentTypeId
             };
 
             await _context.Equipments.AddAsync(equipment, cancellationToken);
@@ -48,11 +57,20 @@ namespace Equipments.Application.Handlers
                 throw new NotFoundExeption(nameof(Equipment), request.Id);
             }
 
+            var equipmentType = await _context.EquipmentTypes
+                .FirstOrDefaultAsync(e => e.Id == request.EquipmentTypeId);
+
+            if (equipmentType == null)
+            {
+                throw new NotFoundExeption(nameof(EquipmentType), request.EquipmentTypeId);
+            }
+
             entity.Name = request.Name;
             entity.ProductionDate = request.ProductionDate;
             entity.ReceiptDate = request.ReceiptDate;
             entity.InventoryNumber = request.InventoryNumber;
             entity.ModelNumber = request.ModelNumber;
+            entity.EquipmentTypeId = request.EquipmentTypeId;
 
             await _context.SaveChangesAsync(cancellationToken);
 

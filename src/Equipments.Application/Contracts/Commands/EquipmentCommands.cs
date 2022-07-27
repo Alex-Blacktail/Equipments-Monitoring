@@ -10,6 +10,7 @@ namespace Equipments.Application.Commands
         public string InventoryNumber { get; set; }
         public DateTime ProductionDate { get; set; }
         public DateTime ReceiptDate { get; set; }
+        public int EquipmentTypeId { get; set; }
     }
 
     public class EquipmentUpdateCommand : IRequest
@@ -20,6 +21,7 @@ namespace Equipments.Application.Commands
         public string InventoryNumber { get; set; }
         public DateTime ProductionDate { get; set; }
         public DateTime ReceiptDate { get; set; }
+        public int EquipmentTypeId { get; set; }
     }
 
     public class EquipmentDeleteCommand : IRequest
