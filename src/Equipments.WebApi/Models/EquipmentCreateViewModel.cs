@@ -12,14 +12,17 @@ namespace Equipments.WebApi.Models
         public DateTime ProductionDate { get; set; }
         public DateTime ReceiptDate { get; set; }
 
+        public int EquipmentTypeId { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EquipmentCreateViewModel, EquipmentCreateCommand>()
-               .ForMember(vm => vm.Name, e => e.MapFrom(e => e.Name))
-               .ForMember(vm => vm.ModelNumber, e => e.MapFrom(e => e.ModelNumber))
-               .ForMember(vm => vm.InventoryNumber, e => e.MapFrom(e => e.InventoryNumber))
-               .ForMember(vm => vm.ProductionDate, e => e.MapFrom(e => e.ProductionDate))
-               .ForMember(vm => vm.ReceiptDate, e => e.MapFrom(e => e.ReceiptDate));
+               .ForMember(c => c.Name, e => e.MapFrom(vm => vm.Name))
+               .ForMember(c => c.ModelNumber, e => e.MapFrom(vm => vm.ModelNumber))
+               .ForMember(c => c.InventoryNumber, e => e.MapFrom(vm => vm.InventoryNumber))
+               .ForMember(c => c.ProductionDate, e => e.MapFrom(vm => vm.ProductionDate))
+               .ForMember(c => c.ReceiptDate, e => e.MapFrom(vm => vm.ReceiptDate))
+               .ForMember(c => c.EquipmentTypeId, e => e.MapFrom(vm => vm.EquipmentTypeId));
         }
     }
 }

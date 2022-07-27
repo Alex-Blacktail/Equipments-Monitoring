@@ -13,15 +13,19 @@ namespace Equipments.WebApi.Models
         public DateTime ProductionDate { get; set; }
         public DateTime ReceiptDate { get; set; }
 
+        public int EquipmentTypeId { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EquipmentUpdateViewModel, EquipmentUpdateCommand>()
-               .ForMember(vm => vm.Id, e => e.MapFrom(e => e.Name))
-               .ForMember(vm => vm.Name, e => e.MapFrom(e => e.Name))
-               .ForMember(vm => vm.ModelNumber, e => e.MapFrom(e => e.ModelNumber))
-               .ForMember(vm => vm.InventoryNumber, e => e.MapFrom(e => e.InventoryNumber))
-               .ForMember(vm => vm.ProductionDate, e => e.MapFrom(e => e.ProductionDate))
-               .ForMember(vm => vm.ReceiptDate, e => e.MapFrom(e => e.ReceiptDate));
+               .ForMember(с => с.Id, e => e.MapFrom(vm => vm.Id))
+               .ForMember(с => с.Name, e => e.MapFrom(vm => vm.Name))
+               .ForMember(с => с.ModelNumber, e => e.MapFrom(vm => vm.ModelNumber))
+               .ForMember(с => с.InventoryNumber, e => e.MapFrom(vm => vm.InventoryNumber))
+               .ForMember(с => с.ProductionDate, e => e.MapFrom(vm => vm.ProductionDate))
+               .ForMember(с => с.ReceiptDate, e => e.MapFrom(vm => vm.ReceiptDate))
+               .ForMember(c => c.EquipmentTypeId, e => e.MapFrom(vm => vm.EquipmentTypeId));
+
         }
     }
 }
