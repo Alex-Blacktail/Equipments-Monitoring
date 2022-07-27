@@ -2,9 +2,9 @@
 using Equipments.WebApi.Models;
 using Equipments.Application.Queries;
 using Equipments.Application.ViewModels;
+using Equipments.Application.Commands;
 using MediatR;
 using AutoMapper;
-using Equipments.Application.Commands;
 
 namespace Equipments.WebApi.Controllers
 {
