@@ -10,7 +10,6 @@ namespace Equipments.Infrastructure
         public EquipmentsManagmentContext(DbContextOptions<EquipmentsManagmentContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
